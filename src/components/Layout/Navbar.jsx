@@ -22,7 +22,22 @@ export default function Navbar(){
                 <Link to="/" className="nav-logo">Registration </Link>
 
                 <div className="nav-menu">
-
+                    {currentUser? (
+                        //show user menu when logged in
+                        <div className="nav-user">
+                            <span className="nav-username">
+                                Hello, {currentUser.displayName || currentUser.email}
+                            </span>
+                            <Link to= "/dashboard" className="nav-link">Dashboard</Link>
+                            <button className="nav-logout" onClick={handleLogout}>Logout</button>
+                        </div>
+                    ) : (
+                        //show auth links when not logged in 
+                        <div className="nav-au">
+                            <Link to='/login' className="nav-link">Login</Link>
+                            <Link to='/register' className="nav-link nav-register">Register</Link>
+                        </div>
+                    )}
                 </div>
             </div>
         </nav>
